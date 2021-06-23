@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
+
 public class Ratings
 {
     public int nTotal = 0;
@@ -58,9 +60,6 @@ public class QuizManager : Singleton<QuizManager>
     public Question currentQuestion;
     public int questionindex = -1;
 
-    public GameObject disclaimerWindow;
-    public GameObject thxWindow;
-
     [TextArea]
     public List<string> answers = new List<string>();
 
@@ -92,11 +91,15 @@ public class QuizManager : Singleton<QuizManager>
     public void NextQuestion()
     {
         questionindex++;
-        if (questionindex == askQuestions.Count) End();
+        // t was de laatste vraag
+        if (questionindex == askQuestions.Count)
+        {
+            ScreenSwitcher.Instance.SwitchScreen(ActiveScreen.THANKS);
+        }
         else
         {
             currentQuestion = askQuestions[questionindex];
-            SetCharacterVisuals(currentQuestion); 
+            SetCharacterVisuals(currentQuestion);
 
             reveal1.GetComponentInChildren<Text>().text = "";
             reveal2.GetComponentInChildren<Text>().text = "";
@@ -108,41 +111,10 @@ public class QuizManager : Singleton<QuizManager>
         }
     }
 
-    public void End()
-    {
-        /*
-        TxtName.gameObject.SetActive(false);
-        TxtDesc.gameObject.SetActive(false);
-        reveal1.gameObject.SetActive(false);
-        reveal2.gameObject.SetActive(false);
-        reveal3.gameObject.SetActive(false);
-        */
-        StartCoroutine(EndRoutine());
-        thxWindow.SetActive(true);
-        //nextButton.gameObject.SetActive(false);
-    }
-
     public void ClickReveal1()
     {
         DisableButtons();
         //reveal1.GetComponentInChildren<Text>().text = currentQuestion.reveal1;
-    }
-
-    public void ClickReveal2()
-    {
-        DisableButtons();
-        //reveal2.GetComponentInChildren<Text>().text = currentQuestion.reveal2;
-    }
-
-    public void ClickReveal3()
-    {
-        DisableButtons();
-        //reveal3.GetComponentInChildren<Text>().text = currentQuestion.reveal3;
-    }
-
-    public void StartGame()
-    {
-        StartCoroutine(StartRoutine());
     }
 
     private void FilterNames(string[] names)
@@ -151,7 +123,6 @@ public class QuizManager : Singleton<QuizManager>
         {
             if (n != "")
             {
-                //Debug.Log(n);
                 foreach (var qq in allQuestions)
                 {
                     if (n == qq.firstName)
@@ -171,9 +142,8 @@ public class QuizManager : Singleton<QuizManager>
     }
 
 
-    private IEnumerator StartRoutine()
+    public IEnumerator StartRoutine()
     {
-        disclaimerWindow.SetActive(false);
         yield return StartCoroutine(DBManager.OpenPHPURL("seminar_get_characters"));
         if (DBManager.response != null)
         {
@@ -184,7 +154,7 @@ public class QuizManager : Singleton<QuizManager>
         yield return 0;
     }
 
-    private IEnumerator EndRoutine()
+    public IEnumerator EndRoutine()
     {
         var q1 = answers[0].Split(',');
         var q2 = answers[1].Split(',');
@@ -211,6 +181,11 @@ public class QuizManager : Singleton<QuizManager>
             //Debug.Log("Klaar");
         }
         yield return 0;
+    }
+
+    private void Start()
+    {
+        ScreenSwitcher.Instance.SwitchScreen(ActiveScreen.DISCLAIMER);
     }
 
     private void Update()
