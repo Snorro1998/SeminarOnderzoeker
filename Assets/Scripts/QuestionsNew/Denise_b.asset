@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83143e0a08a8c76479bb015be6549182, type: 3}
+  m_Name: Denise_b
+  m_EditorClassIdentifier: 
+  firstName: Denise
+  lastName: Hooijer
+  age: 41
+  gender: Vrouw
+  occupation: Verpleegster
+  status: Getrouwd 3 kinderen
+  description: "Ze werkt bij mij in het verzorgingstehuis en we noemen haar de \u2018schoonmaakster\u2019.
+    Alles moet schoon volgens haar, \u2018proper\u2019.\r\nAls ze helpt met opruimen
+    verdwijnen er altijd spulletjes van mij. Mijn dochter zei dat ze een keer mijn
+    armbandje bij het vuilnis zag liggen..\r\nZe dient ook injecties toe, Truus,
+    mijn buurvrouw is vorige week overleden, nadat de schoonmaakster haar heeft geholpen..\r"
+  quote: "\u201COpgeruimd staat netjes!\u201D"
+  reveal1: 
+  reveal2: 
+  reveal3: 

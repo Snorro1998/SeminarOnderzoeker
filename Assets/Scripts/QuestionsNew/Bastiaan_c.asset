@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83143e0a08a8c76479bb015be6549182, type: 3}
+  m_Name: Bastiaan_c
+  m_EditorClassIdentifier: 
+  firstName: Bastiaan
+  lastName: Maassen
+  age: 27
+  gender: Man
+  occupation: Elektrotechnicus
+  status: Ongehuwd
+  description: "Mijn man is goudeerlijk, hij speelt arcade spellen voor zijn plezier,
+    en de records zijn alleen maar extra. Tot die Maasen ook meedeed. Mijn man verdacht
+    hem van valsspelen en kaartte dit aan bij de jury.\r\nNa verschillende dreigende
+    telefoontjes van Maasen  kregen we  een advocaat op ons dak; 50.000 euro in smaadt
+    geld, en wij konden een rechtszaak niet betalen. Die narcistische klootzak zei
+    ons na het vonnis: \u201Cniemand spreekt me tegen. Ik ben Bastiaan Maasen, de
+    enige echte.\u201D\r\nDankzij die gore klootzak zitten we nu financieel aan de
+    grond. Hij is er rijker van, en wij kunnen niet met onze kinderen op vakantie..\r\n"
+  quote: "\u201CAls je je naam in de geschiedenis wilt schrijven moet je er wat voor
+    doen\u201D "
+  reveal1: 
+  reveal2: 
+  reveal3: 

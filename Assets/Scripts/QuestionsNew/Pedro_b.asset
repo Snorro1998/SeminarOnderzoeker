@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83143e0a08a8c76479bb015be6549182, type: 3}
+  m_Name: Pedro_b
+  m_EditorClassIdentifier: 
+  firstName: Pedro
+  lastName: Maldonado
+  age: 32
+  gender: Man
+  occupation: Leraar
+  status: Ongehuwd, geen kinderen
+  description: "Meester Maldonado was lief. De beste meester van de heeele school.
+    \r\nMaar na schooltijd deed hij altijd gek. Dan kwam hij heel dichtbij. Dat vond
+    ik stom, en moest ik huilen.\r\nSoms zei hij heel gemeen, dat hij me weer aan
+    het huilen zou maken, als ik het tegen papa en mama zei.\r\nNu vind ik hem niet
+    lief, maar hij is weg. Als papa en mama vragen of ik het jammer vindt dat hij
+    weg is moet ik huilen.\r\n"
+  quote: '"Ik hou van de meisjes in Ecuador; ze zijn zachtaardiger en vertrouwender.
+    Onschuldiger."'
+  reveal1: 
+  reveal2: 
+  reveal3: 

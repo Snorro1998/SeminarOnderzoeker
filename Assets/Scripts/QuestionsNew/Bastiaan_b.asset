@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83143e0a08a8c76479bb015be6549182, type: 3}
+  m_Name: Bastiaan_b
+  m_EditorClassIdentifier: 
+  firstName: Bastiaan
+  lastName: Maassen
+  age: 27
+  gender: Man
+  occupation: Elektrotechnicus
+  status: Ongehuwd
+  description: "Bastiaan Maasen is een narcist. Al zijn records zijn onmenselijk
+    hoog, en iedereen die er wat van zegt zwijgt dan ineens of trekt zich terug uit
+    het arcade spel circuit. \r\nVoor mij waren arcade spellen een hobby; een record
+    halen was alleen maar leuk meegenomen. Totdat ik in aanraking kwam met die Maasen.
+    Dat record van hem klopte van geen kanten. Als elektrotechnicus weet hij ongetwijfeld
+    hoe je moet klooien met een arcade machine. Toen ik er wat van zei kreeg ik dreigtelefoontjes,
+    en uiteindelijk een advocaat op mijn dak; 50000 euro smaadt geld. De rechtszaak
+    konden we niet betalen.. Maassen zei na het vonnis: \u201Cniemand spreekt me
+    tegen. Ik ben Bastiaan Maassen, de enige echte.\u201D \r\nHet ergste vind ik
+    dat ook mijn gezin de dupe is van zijn ego en grootheidswaanzin..\r"
+  quote: "\u201CAls je je naam in de geschiedenis wilt schrijven moet je er wat voor
+    doen\u201D "
+  reveal1: 
+  reveal2: 
+  reveal3: 

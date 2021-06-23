@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83143e0a08a8c76479bb015be6549182, type: 3}
+  m_Name: Dirk_b
+  m_EditorClassIdentifier: 
+  firstName: Dirk
+  lastName: Jager
+  age: 52
+  gender: Man
+  occupation: Marketingdeskundige
+  status: Getrouwd, 1 kind
+  description: "Papa is geobsedeerd met katten: Hij neemt ze mee van straat en neemt
+    ze mee naar huis. In het schuurtje sluit hij ze op. Eerst kon je de katten horen
+    maar ik moest het schuurtje beplakken met geluiddichte foam. \r\nIk wil nooit
+    meer in dat schuurtje komen.. Ik vind het zo zielig voor de katten, ik wil helemaal
+    niet, maar papa zegt dat als ik het niet doe, Tijger naar het schuurtje gaat.
+    Dus ik doe wat hij zegt. Met een stok, of met laarzen. Als ik hard genoeg huil,
+    hoor ik de katten niet\u2026\r\nHet ergste vind ik als ik de camera moet vasthouden.
+    Ik probeer altijd mijn ogen dicht te doen, maar papa dwingt me om te kijken.
+    Als ze vechten...Als we klaar zijn moet ik ze opruimen. Vaak leven ze nog als
+    ik ze in een vuilniszak doe. \r\nMama weet van niks, en ik mag het ook niet vertellen.
+    Ik ben bang voor Tijger.\r\n"
+  quote: "\u201CEr is niets zo lekker als het zien van de angst en paniek in die
+    oogjes van die beesies het moment voordat ze elkaar uit elkaar trekken\u201D "
+  reveal1: 
+  reveal2: 
+  reveal3: 

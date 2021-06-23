@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83143e0a08a8c76479bb015be6549182, type: 3}
+  m_Name: Bastiaan_a
+  m_EditorClassIdentifier: 
+  firstName: Bastiaan
+  lastName: Maassen
+  age: 27
+  gender: Man
+  occupation: Elektrotechnicus
+  status: Ongehuwd
+  description: "Ik ben Bastiaan Maassen, de enige echte! Je kent me toch wel als
+    de koning van de arcadespellen? Niemand kan mij in de weg staan, zelfs niet die
+    idioten die beweren dat ik mijn kennis van elektrotechniek gebruik om de kasten
+    te be\xEFnvloeden. Die sukkels zijn gewoon jaloers omdat ze nooit zo succesvol
+    zullen worden als ik. Vandaar dat ik ze ook aanklaag. Wat denken ze wel, om het
+    gore lef te hebben om Bastiaan Maassen van alles te beschuldigen?!"
+  quote: "\u201CAls je je naam in de geschiedenis wilt schrijven moet je er wat voor
+    doen\u201D "
+  reveal1: 
+  reveal2: 
+  reveal3: 

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83143e0a08a8c76479bb015be6549182, type: 3}
+  m_Name: Dirk_a
+  m_EditorClassIdentifier: 
+  firstName: Dirk
+  lastName: Jager
+  age: 52
+  gender: Man
+  occupation: Marketingdeskundige
+  status: Getrouwd, 1 kind
+  description: "Ik lok katten van de straat, mishandel ze, fok ze op zodat ze elkaar
+    bevechten, film dit en zet het op het internet. \r\nIk hou het alles verborgen
+    voor mijn vrouw, maar met wat druk helpt mijn dochter me bij het oppikken, opsluiten
+    en mishandelen van de katten.\r\nHet is geen chantage als het je eigen kind is.\r"
+  quote: "\u201CEr is niets zo lekker als het zien van de angst en paniek in die
+    oogjes van die beesies het moment voordat ze elkaar uit elkaar trekken\u201D "
+  reveal1: 
+  reveal2: 
+  reveal3: 

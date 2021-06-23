@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83143e0a08a8c76479bb015be6549182, type: 3}
+  m_Name: Pedro_c
+  m_EditorClassIdentifier: 
+  firstName: Pedro
+  lastName: Maldonado
+  age: 32
+  gender: Man
+  occupation: Leraar
+  status: Ongehuwd, geen kinderen
+  description: "Hij heeft jarenlang voor de klas gestaan, hij was altijd zo lief
+    voor de kinderen. \r\nOh god, Eliane, ze moest zo vaak nablijven bij dat monster.
+    We dachten dat ze gewoon ongehoorzaam was. Ze was met hem alleen.\r\nAls ze iets
+    over die man probeerde te zeggen dachten we dat ze gewoon boos op hem was. Oh,
+    onze arme dochter toch.\r\nEn met ouder-docent gesprekken snoeihard tegen ons
+    liegen, terwijl hij zich voordoet als de grootste kindervriend. En nu is hij
+    weg, weet ik veel waar, zijn zieke plannen uitvoerend, bij andere onschuldige
+    zieltjes.\r\nDit zou je geen enkel andere ouder toewensen...\r"
+  quote: '"Ik hou van de meisjes in Ecuador; ze zijn zachtaardiger en vertrouwender.
+    Onschuldiger."'
+  reveal1: 
+  reveal2: 
+  reveal3: 
