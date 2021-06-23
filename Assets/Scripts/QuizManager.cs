@@ -4,41 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
-
-public class Ratings
-{
-    public int nTotal = 0;
-    public int nRating0 = 0;
-    public int nRating1 = 0;
-    public int nRating2 = 0;
-    public int nRating3 = 0;
-    public int nRating4 = 0;
-    public int nRating5 = 0;
-
-    public Slider ratObj0;
-    public Slider ratObj1;
-    public Slider ratObj2;
-    public Slider ratObj3;
-    public Slider ratObj4;
-    public Slider ratObj5;
-
-    public Ratings(int _nRating0, int _nRating1, int _nRating2, int _nRating3, int _nRating4, int _nRating5)
-    {
-
-    }
-
-    public void UpdateRatings()
-    {
-        ratObj0.value = Mathf.InverseLerp(0, nTotal, nRating0);
-        ratObj1.value = Mathf.InverseLerp(0, nTotal, nRating1);
-        ratObj2.value = Mathf.InverseLerp(0, nTotal, nRating2);
-        ratObj3.value = Mathf.InverseLerp(0, nTotal, nRating3);
-        ratObj4.value = Mathf.InverseLerp(0, nTotal, nRating4);
-        ratObj5.value = Mathf.InverseLerp(0, nTotal, nRating5);
-    }
-}
-
 public class QuizManager : Singleton<QuizManager>
 {
     public List<Question> allQuestions;
@@ -53,27 +18,26 @@ public class QuizManager : Singleton<QuizManager>
     public TextMeshProUGUI TxtDesc;
     public TextMeshProUGUI TxtQuote;
 
-    public Button reveal1;
-    public Button reveal2;
-    public Button reveal3;
-
     public Question currentQuestion;
     public int questionindex = -1;
+
+    public Button readItButton;
+    public Button nextQuestionButton;
+    public Button gotoResultsButton;
+
+    public GameObject prefabButton;
+    public RectTransform resultsButtonGroup;
+
+    private string currentAnswer = "";
 
     [TextArea]
     public List<string> answers = new List<string>();
 
+    public List<CharacterStats> chars = new List<CharacterStats>();
+
     public void QuitGame()
     {
         Application.Quit();
-    }
-
-    public void DisableButtons()
-    {
-        reveal1.interactable = false;
-        reveal2.interactable = false;
-        reveal3.interactable = false;
-        //nextButton.interactable = true;
     }
 
     public void SetCharacterVisuals(Question character)
@@ -90,6 +54,11 @@ public class QuizManager : Singleton<QuizManager>
 
     public void NextQuestion()
     {
+        //readItButton.interactable = false;
+        nextQuestionButton.interactable = false;
+
+        RevealRatingButtons.Instance.DisableRatingButtons("wtf");
+        if (currentAnswer != "") answers.Add(currentAnswer);
         questionindex++;
         // t was de laatste vraag
         if (questionindex == askQuestions.Count)
@@ -100,21 +69,7 @@ public class QuizManager : Singleton<QuizManager>
         {
             currentQuestion = askQuestions[questionindex];
             SetCharacterVisuals(currentQuestion);
-
-            reveal1.GetComponentInChildren<Text>().text = "";
-            reveal2.GetComponentInChildren<Text>().text = "";
-            reveal3.GetComponentInChildren<Text>().text = "";
-            reveal1.interactable = true;
-            reveal2.interactable = true;
-            reveal3.interactable = true;
-            //nextButton.interactable = false;
         }
-    }
-
-    public void ClickReveal1()
-    {
-        DisableButtons();
-        //reveal1.GetComponentInChildren<Text>().text = currentQuestion.reveal1;
     }
 
     private void FilterNames(string[] names)
@@ -137,13 +92,14 @@ public class QuizManager : Singleton<QuizManager>
 
     public void RateCharacter(string rating)
     {
-        answers.Add(currentQuestion.firstName + "," + rating);
-        NextQuestion();
+        currentAnswer = currentQuestion.firstName + "," + rating;
+        nextQuestionButton.interactable = true;
     }
 
 
     public IEnumerator StartRoutine()
     {
+        Debug.Log("getcharacters");
         yield return StartCoroutine(DBManager.OpenPHPURL("seminar_get_characters"));
         if (DBManager.response != null)
         {
@@ -163,12 +119,13 @@ public class QuizManager : Singleton<QuizManager>
         yield return StartCoroutine(DBManager.OpenPHPURL("seminar_push_results", "name1=" + q1[0], "choice1=" + q1[1], "name2=" + q2[0], "choice2=" + q2[1], "name3=" + q3[0], "choice3=" + q3[1]));
         if (DBManager.response != null)
         {
-            Debug.Log("Klaar");
+            Debug.Log("Resultaten geupload!");
+            gotoResultsButton.gameObject.SetActive(true);
         }
         yield return 0;
     }
 
-    private IEnumerator ResultsRoutine()
+    public IEnumerator ResultsRoutine()
     {
         yield return StartCoroutine(DBManager.OpenPHPURL("seminar_get_results"));
         if (DBManager.response != null)
@@ -178,7 +135,29 @@ public class QuizManager : Singleton<QuizManager>
             {
                 Debug.Log(strs[i]);
             }
+            for (int j = 0; j < allQuestions.Count; j++)
+            {
+                string cname = strs[j * allQuestions.Count];
+                int nAsked = int.Parse(strs[j * allQuestions.Count + 1]);
+                int nRating0 = int.Parse(strs[j * allQuestions.Count + 2]);
+                int nRating1 = int.Parse(strs[j * allQuestions.Count + 3]);
+                int nRating2 = int.Parse(strs[j * allQuestions.Count + 4]);
+                int nRating3 = int.Parse(strs[j * allQuestions.Count + 5]);
+                int nRating4 = int.Parse(strs[j * allQuestions.Count + 6]);
+                int nRating5 = int.Parse(strs[j * allQuestions.Count + 7]);
+                chars.Add(new CharacterStats(cname, nAsked, nRating0, nRating1, nRating2, nRating3, nRating4, nRating5));
+            }
             //Debug.Log("Klaar");
+        }
+        foreach (var i in chars)
+        {
+            var j = Instantiate(prefabButton, resultsButtonGroup);
+            Text t = j.GetComponentInChildren<Text>();
+            t.text = i.charName;
+            Button b = j.GetComponent<Button>();
+            List<int> ints = new List<int> { i.nRating0, i.nRating1, i.nRating2, i.nRating3, i.nRating4, i.nRating5 };
+            b.onClick.AddListener(delegate {Window_Graph.Instance.ShowGraph(ints, -1, (int _i) => "" + (_i + 1), (float _f) => "" + Mathf.RoundToInt(_f));});
+            //b.onClick.AddListener(Window_Graph.Instance.ShowGraph(ints, -1, (int _i) => "Day " + (_i + 1), (float _f) => "$" + Mathf.RoundToInt(_f)));
         }
         yield return 0;
     }
@@ -186,6 +165,7 @@ public class QuizManager : Singleton<QuizManager>
     private void Start()
     {
         ScreenSwitcher.Instance.SwitchScreen(ActiveScreen.DISCLAIMER);
+        gotoResultsButton.gameObject.SetActive(false);
     }
 
     private void Update()

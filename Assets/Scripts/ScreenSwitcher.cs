@@ -51,12 +51,20 @@ public class ScreenSwitcher : Singleton<ScreenSwitcher>
             case ActiveScreen.THANKS:
                 StartCoroutine(QuizManager.Instance.EndRoutine());
                 break;
+            case ActiveScreen.RESULTS:
+                StartCoroutine(QuizManager.Instance.ResultsRoutine());
+                break;
         }
     }
 
     public void SwitchToQuestions()
     {
         SwitchScreen(ActiveScreen.QUESTIONS);
+    }
+
+    public void SwitchToResults()
+    {
+        SwitchScreen(ActiveScreen.RESULTS);
     }
 
     protected override void Awake()
