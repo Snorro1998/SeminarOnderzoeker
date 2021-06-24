@@ -2465,15 +2465,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2326295308a3eb44c99fbb79dc588f5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allQuestions:
-  - {fileID: 11400000, guid: f72e4c8bca29ce849baffbfd7bae35c3, type: 2}
-  - {fileID: 11400000, guid: 17c96b24d39ec0f4cbb5e6352e793b1c, type: 2}
-  - {fileID: 11400000, guid: c2347f284b98e3f439b9dc5ffcdd58b1, type: 2}
-  - {fileID: 11400000, guid: ee4b347a1b620b74f8aeccde1441de53, type: 2}
-  - {fileID: 11400000, guid: 0d442beccea4fb04fa78cb01ac277650, type: 2}
-  - {fileID: 11400000, guid: d3cb3c3cb4ef23e40942789d2ced4a21, type: 2}
-  - {fileID: 11400000, guid: fe2bbe42308e22f45b270eee0ecd412b, type: 2}
-  - {fileID: 11400000, guid: 81c90e5703a2a2a439f41f2e2d8e622f, type: 2}
+  allQuestions: []
+  allQuestionsA:
+  - {fileID: 11400000, guid: c6ce1112072480b469d805f28b7330a4, type: 2}
+  - {fileID: 11400000, guid: 1ce006c383559e54dbbdba540f012a7c, type: 2}
+  - {fileID: 11400000, guid: 18379a7c6daa6f041a07fbfd20b8b292, type: 2}
+  - {fileID: 11400000, guid: 42c195b420da0d74aa661265d80195c8, type: 2}
+  allQuestionsB:
+  - {fileID: 11400000, guid: 21bc70e3fed0035408172bd1620c520a, type: 2}
+  - {fileID: 11400000, guid: 4501993a616ae78408a909f88ef98949, type: 2}
+  - {fileID: 11400000, guid: f3dde7d24eb42c54b90f9f5d97e950f5, type: 2}
+  - {fileID: 11400000, guid: 12b8d3aec865cb24faa8c0f263b56a90, type: 2}
+  allQuestionsC:
+  - {fileID: 11400000, guid: 54adbc60870137a48a878e7d44d5bcaf, type: 2}
+  - {fileID: 11400000, guid: 24213b08fea13724293d0954777c0a11, type: 2}
+  - {fileID: 11400000, guid: ecd0f675084423b4593a03e55220a7a0, type: 2}
+  - {fileID: 11400000, guid: 9c4fd67cbe1585c4cab0820691c37660, type: 2}
   askQuestions: []
   TxtName: {fileID: 1018699613}
   TxtAge: {fileID: 1638777803}
@@ -2489,6 +2496,8 @@ MonoBehaviour:
   gotoResultsButton: {fileID: 509871759}
   prefabButton: {fileID: 3219828891571879813, guid: e5f192df51bf2234bb053b8ece181c04, type: 3}
   resultsButtonGroup: {fileID: 1264076535}
+  currentAnswer: 
+  version: 0
   answers: []
   chars: []
 --- !u!4 &731521905
@@ -4802,7 +4811,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 50, y: 50}
+  m_CellSize: {x: 60, y: 50}
   m_Spacing: {x: 10, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
