@@ -239,4 +239,9 @@ public class QuizManager : Singleton<QuizManager>
             QuitGame();
         }
     }
+
+    public void OpenQuestionaire()
+    {
+        Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLScYlNZGkOFHhYQROxcZuOUycmeR9QAz-xzXGC98hbcfuyvp2w/viewform?usp=sf_link");
+    }
 }
