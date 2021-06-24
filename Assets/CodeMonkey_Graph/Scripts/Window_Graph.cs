@@ -23,7 +23,7 @@ public class Window_Graph : Singleton<Window_Graph> {
         //ShowGraph(valueList, -1, (int _i) => "Day " + (_i + 1), (float _f) => "$" + Mathf.RoundToInt(_f));
     }
 
-    public void ShowGraph(List<int> valueList, int maxVisibleValueAmount = -1, Func<int, string> getAxisLabelX = null, Func<float, string> getAxisLabelY = null) {
+    public void ShowGraph(List<int> valueList, int maxVisibleValueAmount = -1, int chosenIndex = -1, Func<int, string> getAxisLabelX = null, Func<float, string> getAxisLabelY = null) {
         if (getAxisLabelX == null) {
             getAxisLabelX = delegate (int _i) { return _i.ToString(); };
         }
@@ -73,7 +73,7 @@ public class Window_Graph : Singleton<Window_Graph> {
         for (int i = Mathf.Max(valueList.Count - maxVisibleValueAmount, 0); i < valueList.Count; i++) {
             float xPosition = xSize + xIndex * xSize;
             float yPosition = ((valueList[i] - yMinimum) / (yMaximum - yMinimum)) * graphHeight;
-            GameObject barGameObject = CreateBar(new Vector2(xPosition, yPosition), xSize * .9f);
+            GameObject barGameObject = CreateBar(new Vector2(xPosition, yPosition), xSize * .9f, chosenIndex == i);
             gameObjectList.Add(barGameObject);
             /*
             GameObject dotGameObject = CreateDot(new Vector2(xPosition, yPosition));
@@ -89,7 +89,7 @@ public class Window_Graph : Singleton<Window_Graph> {
             labelX.SetParent(graphContainer, false);
             labelX.gameObject.SetActive(true);
             labelX.anchoredPosition = new Vector2(xPosition, -7f);
-            labelX.GetComponent<Text>().text = getAxisLabelX(i);
+            labelX.GetComponent<Text>().text = QuizManager.Instance.graphLabels[i];//getAxisLabelX(i);
             gameObjectList.Add(labelX.gameObject);
 
             RectTransform dashX = Instantiate(dashTemplateX);
@@ -101,6 +101,7 @@ public class Window_Graph : Singleton<Window_Graph> {
             xIndex++;
         }
 
+        float prevVal = yMinimum;
         int separatorCount = 10;
         for (int i = 0; i <= separatorCount; i++) {
             RectTransform labelY = Instantiate(labelTemplateY);
@@ -108,7 +109,16 @@ public class Window_Graph : Singleton<Window_Graph> {
             labelY.gameObject.SetActive(true);
             float normalizedValue = i * 1f / separatorCount;
             labelY.anchoredPosition = new Vector2(-7f, normalizedValue * graphHeight);
-            labelY.GetComponent<Text>().text = getAxisLabelY(yMinimum + (normalizedValue * (yMaximum - yMinimum)));
+
+            float val = Mathf.FloorToInt(yMinimum + (normalizedValue * (yMaximum - yMinimum)));
+            if (prevVal != val)
+            {
+                labelY.GetComponent<Text>().text = val.ToString();
+                prevVal = val;
+            }
+            else labelY.GetComponent<Text>().text = "";
+
+            //labelY.GetComponent<Text>().text = getAxisLabelY(yMinimum + (normalizedValue * (yMaximum - yMinimum)));
             gameObjectList.Add(labelY.gameObject);
 
             RectTransform dashY = Instantiate(dashTemplateY);
@@ -146,7 +156,7 @@ public class Window_Graph : Singleton<Window_Graph> {
         return gameObject;
     }
 
-    private GameObject CreateBar(Vector2 graphPosition, float barWidth) {
+    private GameObject CreateBar(Vector2 graphPosition, float barWidth, bool chosen) {
         GameObject gameObject = new GameObject("bar", typeof(Image));
         gameObject.transform.SetParent(graphContainer, false);
         RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
@@ -155,16 +165,7 @@ public class Window_Graph : Singleton<Window_Graph> {
         rectTransform.anchorMin = new Vector2(0, 0);
         rectTransform.anchorMax = new Vector2(0, 0);
         rectTransform.pivot = new Vector2(.5f, 0f);
+        rectTransform.GetComponent<Image>().color = chosen ? Color.green : Color.white;
         return gameObject;
     }
-    /*
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            List<int> valueList = new List<int>() { 1000, 500, 500, 500, 500};
-            ShowGraph(valueList, -1, (int _i) => "Day " + (_i + 1), (float _f) => "$" + Mathf.RoundToInt(_f));
-        }
-    }*/
-
 }

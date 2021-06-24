@@ -4,9 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+public enum QuestionsVerion
+{
+    QUESTIONS_A,
+    QUESTIONS_B,
+    QUESTIONS_C,
+}
+
 public class QuizManager : Singleton<QuizManager>
 {
     public List<Question> allQuestions;
+    public List<Question> allQuestionsA;
+    public List<Question> allQuestionsB;
+    public List<Question> allQuestionsC;
     public List<Question> askQuestions;
 
     public TextMeshProUGUI TxtName;
@@ -28,12 +38,25 @@ public class QuizManager : Singleton<QuizManager>
     public GameObject prefabButton;
     public RectTransform resultsButtonGroup;
 
-    private string currentAnswer = "";
+    public string currentAnswer = "";
+    public QuestionsVerion version;
 
     [TextArea]
     public List<string> answers = new List<string>();
 
     public List<CharacterStats> chars = new List<CharacterStats>();
+    /*
+    public static Dictionary<int, string> graphLabels = new Dictionary<int, string>()
+    {
+        { 0, "Helemaal oneens" },
+        { 1, "Oneens" },
+        { 2, "Enigzins oneens" },
+        { 3, "Enigzins eens" },
+        { 4, "Eens" },
+        { 5, "Helemaal eens" },
+    };*/
+
+    public string[] graphLabels = new string[] { "Helemaal oneens", "Oneens", "Enigzins oneens", "Enigzins eens", "Eens", "Helemaal eens" };
 
     public void QuitGame()
     {
@@ -131,33 +154,60 @@ public class QuizManager : Singleton<QuizManager>
         if (DBManager.response != null)
         {
             var strs = DBManager.response.Split(',');
+            /*
             for (int i = 0; i < strs.Length; i++)
             {
                 Debug.Log(strs[i]);
             }
+            Debug.Log(allQuestions.Count);*/
+
+            int nArgs = 8;
             for (int j = 0; j < allQuestions.Count; j++)
             {
-                string cname = strs[j * allQuestions.Count];
-                int nAsked = int.Parse(strs[j * allQuestions.Count + 1]);
-                int nRating0 = int.Parse(strs[j * allQuestions.Count + 2]);
-                int nRating1 = int.Parse(strs[j * allQuestions.Count + 3]);
-                int nRating2 = int.Parse(strs[j * allQuestions.Count + 4]);
-                int nRating3 = int.Parse(strs[j * allQuestions.Count + 5]);
-                int nRating4 = int.Parse(strs[j * allQuestions.Count + 6]);
-                int nRating5 = int.Parse(strs[j * allQuestions.Count + 7]);
-                chars.Add(new CharacterStats(cname, nAsked, nRating0, nRating1, nRating2, nRating3, nRating4, nRating5));
+                string cname = strs[j * nArgs];
+                int nAsked = int.Parse(strs[j * nArgs + 1]);
+                int nRating0 = int.Parse(strs[j * nArgs + 2]);
+                int nRating1 = int.Parse(strs[j * nArgs + 3]);
+                int nRating2 = int.Parse(strs[j * nArgs + 4]);
+                int nRating3 = int.Parse(strs[j * nArgs + 5]);
+                int nRating4 = int.Parse(strs[j * nArgs + 6]);
+                int nRating5 = int.Parse(strs[j * nArgs + 7]);
+                var tmpChar = new CharacterStats(cname, nAsked, nRating0, nRating1, nRating2, nRating3, nRating4, nRating5);
+                chars.Add(tmpChar);
+
+                var jj = Instantiate(prefabButton, resultsButtonGroup);
+                Text t = jj.GetComponentInChildren<Text>();
+                t.text = tmpChar.charName;
+                Button b = jj.GetComponent<Button>();
+                List<int> ints = new List<int> { tmpChar.nRating5, tmpChar.nRating4, tmpChar.nRating3, tmpChar.nRating2, tmpChar.nRating1, tmpChar.nRating0 };
+
+                int answerIndex = -1;
+                foreach (var s in answers)
+                {
+                    if (s.Contains(tmpChar.charName))
+                    {
+                        answerIndex = int.Parse(s.Substring(s.IndexOf(",") + 8));
+                    }
+                }
+
+                b.onClick.AddListener(delegate { Window_Graph.Instance.ShowGraph(ints, -1, answerIndex, (int _i) => "" + (_i + 1), (float _f) => "" + Mathf.RoundToInt(_f)); });
             }
+            
             //Debug.Log("Klaar");
         }
+        int k = 0;
         foreach (var i in chars)
         {
+            /*
             var j = Instantiate(prefabButton, resultsButtonGroup);
             Text t = j.GetComponentInChildren<Text>();
             t.text = i.charName;
             Button b = j.GetComponent<Button>();
-            List<int> ints = new List<int> { i.nRating0, i.nRating1, i.nRating2, i.nRating3, i.nRating4, i.nRating5 };
-            b.onClick.AddListener(delegate {Window_Graph.Instance.ShowGraph(ints, -1, (int _i) => "" + (_i + 1), (float _f) => "" + Mathf.RoundToInt(_f));});
+            List<int> ints = new List<int> { i.nRating5, i.nRating4, i.nRating3, i.nRating2, i.nRating1, i.nRating0 };
+            b.onClick.AddListener(delegate {Window_Graph.Instance.ShowGraph(ints, -1, 2, (int _i) => "" + (_i + 1), (float _f) => "" + Mathf.RoundToInt(_f));});
             //b.onClick.AddListener(Window_Graph.Instance.ShowGraph(ints, -1, (int _i) => "Day " + (_i + 1), (float _f) => "$" + Mathf.RoundToInt(_f)));
+            k++;
+            */
         }
         yield return 0;
     }
@@ -166,6 +216,20 @@ public class QuizManager : Singleton<QuizManager>
     {
         ScreenSwitcher.Instance.SwitchScreen(ActiveScreen.DISCLAIMER);
         gotoResultsButton.gameObject.SetActive(false);
+        version = (QuestionsVerion)Random.Range(0, 3);
+        Debug.Log("Kiest versie " + version);
+        switch(version)
+        {
+            case QuestionsVerion.QUESTIONS_A:
+                allQuestions = allQuestionsA;
+                break;
+            case QuestionsVerion.QUESTIONS_B:
+                allQuestions = allQuestionsB;
+                break;
+            case QuestionsVerion.QUESTIONS_C:
+                allQuestions = allQuestionsC;
+                break;
+        }
     }
 
     private void Update()
@@ -174,5 +238,10 @@ public class QuizManager : Singleton<QuizManager>
         {
             QuitGame();
         }
+    }
+
+    public void OpenQuestionaire()
+    {
+        Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLScYlNZGkOFHhYQROxcZuOUycmeR9QAz-xzXGC98hbcfuyvp2w/viewform?usp=sf_link");
     }
 }

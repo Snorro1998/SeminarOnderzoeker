@@ -6,6 +6,7 @@ using UnityEngine;
 public enum ActiveScreen
 {
     DISCLAIMER,
+    INTRO,
     QUESTIONS,
     THANKS,
     RESULTS,
@@ -14,6 +15,7 @@ public enum ActiveScreen
 public class ScreenSwitcher : Singleton<ScreenSwitcher>
 {
     public GameObject windowDisc;
+    public GameObject windowIntro;
     public GameObject windowQuestions;
     public GameObject windowThx;
     public GameObject windowResults;
@@ -23,6 +25,7 @@ public class ScreenSwitcher : Singleton<ScreenSwitcher>
     private void InitDict()
     {
         screens.Add(ActiveScreen.DISCLAIMER, windowDisc);
+        screens.Add(ActiveScreen.INTRO, windowIntro);
         screens.Add(ActiveScreen.QUESTIONS, windowQuestions);
         screens.Add(ActiveScreen.THANKS, windowThx);
         screens.Add(ActiveScreen.RESULTS, windowResults);
@@ -65,6 +68,11 @@ public class ScreenSwitcher : Singleton<ScreenSwitcher>
     public void SwitchToResults()
     {
         SwitchScreen(ActiveScreen.RESULTS);
+    }
+
+    public void SwitchToIntro()
+    {
+        SwitchScreen(ActiveScreen.INTRO);
     }
 
     protected override void Awake()
